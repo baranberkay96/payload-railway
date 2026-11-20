@@ -50,7 +50,12 @@
         },
         "NEXT_PUBLIC_SERVER_URL": {
           "defaultValue": "https://${{RAILWAY_PUBLIC_DOMAIN}}",
-          "description": "Public URL, compiled into the site at build time (links, SEO, CORS). After adding a custom domain, change it and redeploy.",
+          "description": "Public URL (links, SEO, CORS). Compiled into the browser bundle at build time; after adding a custom domain, change it and deploy the latest commit.",
+          "required": false
+        },
+        "SERVER_URL": {
+          "defaultValue": "${{NEXT_PUBLIC_SERVER_URL}}",
+          "description": "Public URL read by the server at runtime (follows NEXT_PUBLIC_SERVER_URL).",
           "required": false
         },
         "PAYLOAD_SECRET": {
