@@ -53,23 +53,24 @@ Railway base Postgres (volume, private). Railway Bucket `Bucket`.
 
 ## Resource estimate
 
-See the round-12 report for measured values. Expected:
+Measured on the test deploy (2026-11-20): Payload 131 MiB idle, 255 MiB peak after seeding; Postgres 66-100 MiB; CPU idle < 0.01 vCPU.
 
 | Service | Idle RAM | Typical RAM | CPU |
 |---|---|---|---|
-| Payload | 250-450 MB | 400-800 MB | 0.01 idle, 0.3-1 when rendering/revalidating |
+| Payload | 130-260 MB | 400-800 MB | 0.01 idle, 0.3-1 when rendering/revalidating |
 | Postgres | 100 MB | 150-400 MB | 0.01-0.1 |
 
-Estimated cost: idle ≈ $5-6/month; typical small site ≈ $8-12/month plus bucket storage. Minimum plan: Trial for the runtime; the Next.js build needs 2-4 GB on Railway's builders.
+Estimated cost: idle ≈ $2-3/month; typical small site ≈ $8-12/month plus bucket storage. Minimum plan: Trial for the runtime; the Next.js build needs 2-4 GB on Railway's builders.
 
 ## Verification checklist
 
-- [ ] Both services SUCCESS; `/health` 200.
-- [ ] `GET /api/users/init` → initialized; `POST /api/users/first-register` refused.
-- [ ] Login with the generated credentials.
-- [ ] Upload media → stored in the Bucket, served via `/api/media/file/...`.
-- [ ] "Seed your database" → demo posts listed; home and `/posts` render.
-- [ ] Short `ADMIN_PASSWORD`: deploy SUCCESS, warning logged; reset flow works.
+- [x] Both services SUCCESS on the first deploy (build with the throwaway Postgres worked); `/health` 200.
+- [x] `GET /api/users/init` → initialized; `POST /api/users/first-register` → 403.
+- [x] Login with the generated credentials (`/api/users/login` 200).
+- [x] Upload media → stored in the Bucket, served via `/api/media/file/pixel.png` (200 image/png).
+- [x] "Seed your database" (`POST /next/seed`) → success; 3 demo posts listed; `/` and `/posts` render 200 with content (seed images went to the Bucket).
+- [x] Short `ADMIN_PASSWORD` (`abc`): deploy SUCCESS, fail-closed warnings, "Payload is ready".
+- [ ] Reset flow and the runtime `SERVER_URL` commit: not verified — Railway refused further deploys ("trial has expired").
 
 ## Open questions
 
