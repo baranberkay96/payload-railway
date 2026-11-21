@@ -76,3 +76,7 @@ Estimated cost: idle ≈ $2-3/month; typical small site ≈ $8-12/month plus buc
 
 - Builder memory per plan is not documented by Railway; the build sets a 4 GB heap cap.
 - `NEXT_PUBLIC_SERVER_URL` must be passed as a build arg by Railway (service variables are); changing the domain needs a redeploy.
+
+## Publication verification — 2026-11-21
+
+Published:https://railway.com/deploy/payload-3-cms-website-postgres-s3-bucket. Fresh final SERVER_URL and password-reset checks passed alongside login, first-owner protection, seed, posts and private Bucket media. The actual published template deployed2/2services successfully and passed its stability/publichealthtest. See ../../_reports/publication-2026-11-21/152-payload for evidence.
