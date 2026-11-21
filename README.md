@@ -1,5 +1,7 @@
 # Deploy and Host Payload with Railway
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/payload-3-cms-website-postgres-s3-bucket?referralCode=20H68q)
+
 Payload is an open-source, TypeScript-first headless CMS and application framework that runs inside Next.js. This community template deploys Payload 3 with its official website starter (pages, posts, forms, SEO, search, redirects) on Postgres 18, stores media in a Railway Bucket and creates the first admin for you.
 
 ## About Hosting Payload
